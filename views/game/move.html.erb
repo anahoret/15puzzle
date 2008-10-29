@@ -1,0 +1,9 @@
+<table border=1>
+  <% for row in @puzzle.board -%>
+  <tr>
+    <% for col in row	-%>
+    <td><%= @puzzle.movable?(col) ? link_to(col, move_path(col)) : col unless col.zero? -%></td>
+    <% end -%>
+  </tr>
+  <% end -%>
+</table>
