@@ -3,3 +3,8 @@
 
 It's simple 15puzzle web game implemented in Ruby.
 
+Run server
+==========
+just type: ruby game_server.rb
+
+
