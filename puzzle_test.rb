@@ -61,7 +61,7 @@ class PuzzleTest < Test::Unit::TestCase
 private
   def print_board board
     puts
-    board.each {|row| row.each { |n| printf '[%3s ]', (n.zero? ? '' : n) }; puts "\n" }
+    board.each {|row| row.each { |n| printf '[%3s ]', (n.zero? ? '' : n) }; puts }
   end
 
 end
