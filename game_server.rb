@@ -25,7 +25,7 @@ controller "game" do
     if @puzzle.movable? square
       @puzzle.move square
       session[:puzzle] = @puzzle
-      flash[:notice] = 'Puzzle is solved. Congratulation!' if @puzzle.solved?
+      flash[:notice] = 'Puzzle is solved. Congratulations!' if @puzzle.solved?
     else
       flash[:error] = 'Wrong move!'
     end
