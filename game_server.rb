@@ -9,23 +9,29 @@ routes do
 end
 
 controller "game" do
+  
   def index
+    flash[:notice] = 'You have started new game!'
     @puzzle = Puzzle.new
     @puzzle.shuffle!
     session[:puzzle] = @puzzle
+    render :action => 'move'
   end
   
   def move
-    @puzzle = find_game
-    @puzzle.move params[:id].to_i if @puzzle.movable? params[:id].to_i
-    session[:puzzle] = @puzzle
+    @puzzle = session[:puzzle]
+    square = params[:id].to_i
+    
+    if @puzzle.movable? square
+      @puzzle.move square
+      session[:puzzle] = @puzzle
+      flash[:notice] = 'Puzzle is solved. Congratulation!' if @puzzle.solved?
+    else
+      flash[:error] = 'Wrong move!'
+    end
+    
   end
 
-private
-
-  def find_game
-    session[:puzzle]
-  end
 end
 
 start "0.0.0.0", "3000"

@@ -11,11 +11,11 @@ class Puzzle
   end
 
   def solved?
-    @board.eql?((1..15).to_a << 0) || @board.eql?((1..13).to_a << 15 << 14 << 0)
+    @board.eql?((1..15).to_a << 0) 
   end
 
   def shuffle!
-    @board = (0..15).sort_by{ rand }
+    @board = @board.sort_by{ rand }
   end
   
   def movable? square
@@ -26,13 +26,11 @@ class Puzzle
   def move square
     return unless movable? square
     
-    from_row, to_row = find_row(square), find_row(0)
-    from_col, to_col = find_col(square), find_col(0)
-    if from_row == to_row
+    if find_row(square) == find_row(0)
       move_in_row(@board, square)
     else
       transposed_board = board.transpose
-      move_in_row(transposed_board[from_col], square)
+      move_in_row(transposed_board[find_col(square)], square)
       @board = transposed_board.transpose.flatten
     end
   end

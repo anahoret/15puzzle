@@ -7,4 +7,7 @@ Run server
 ==========
 just type: ruby game_server.rb
 
+Tests
+==========
+just type: ruby puzzle_test.rb
 
